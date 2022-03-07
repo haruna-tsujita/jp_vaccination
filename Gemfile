@@ -13,6 +13,7 @@ gem 'rubocop', '~> 1.7'
 
 group :development do
   gem 'rubocop-fjord'
+  gem 'rubocop-minitest'
   gem 'rubocop-rails'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
