@@ -17,6 +17,25 @@ module JpVaccination
     JpVaccination::Vaccination.new(vaccination_data)
   end
 
+  def self.recommended_schedules(birthday:)
+    recommended_schedules = []
+
+    json_data.each do |_key, vaccination|
+      name = "#{vaccination[:name]} #{vaccination[:period]}"
+
+      if vaccination[:recommended].class != Hash
+        recommended_day = pre_school_year(birthday: birthday)
+      elsif vaccination[:recommended][:month]
+        recommended_day = Date.parse(birthday) >> vaccination[:recommended][:month].to_i
+      elsif vaccination[:recommended][:year]
+        recommended_day = Date.parse(birthday) >> vaccination[:recommended][:year].to_i * 12
+      end
+      recommended_schedules << { name: name, date_type: recommended_day }
+    end
+
+    recommended_schedules
+  end
+
   def self.next_day(vaccination_name:, previous_day:)
     next_day = {}
     json_data.each do |key, vaccination|
@@ -48,4 +67,23 @@ module JpVaccination
       Date.parse(date_type) >> (period[start_or_end].to_i * 12)
     end
   end
+
+  def self.pre_school_year(birthday:)
+    five_years_old = Date.parse(birthday) >> 12 * 5
+    case five_years_old.month
+    when 1..3
+      year = five_years_old.year
+    when 4
+      year = if five_years_old.day == 1
+               five_years_old.year
+             else
+               five_years_old.year + 1
+             end
+    when 5..12
+      year = five_years_old.year + 1
+    end
+    Date.new(year, 4, 1)..Date.new(year + 1, 3, 31)
+  end
 end
+
+Rails.logger.debug JpVaccination.recommended_schedules(birthday: '2020-01-01')
