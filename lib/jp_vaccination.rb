@@ -20,7 +20,7 @@ module JpVaccination
   def self.next_day(vaccination_name:, previous_day:)
     next_day = {}
     json_data.each do |key, vaccination|
-      next unless key == vaccination_name
+      next unless key == vaccination_name.to_sym
 
       name = "#{vaccination[:name]} #{vaccination[:period]}"
 
