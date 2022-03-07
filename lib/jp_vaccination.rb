@@ -74,16 +74,10 @@ module JpVaccination
     when 1..3
       year = five_years_old.year
     when 4
-      year = if five_years_old.day == 1
-               five_years_old.year
-             else
-               five_years_old.year + 1
-             end
+      year = five_years_old.day == 1 ? five_years_old.year : five_years_old.year + 1
     when 5..12
       year = five_years_old.year + 1
     end
     Date.new(year, 4, 1)..Date.new(year + 1, 3, 31)
   end
 end
-
-Rails.logger.debug JpVaccination.recommended_schedules(birthday: '2020-01-01')
