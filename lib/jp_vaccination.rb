@@ -64,6 +64,8 @@ module JpVaccination
       deadline_date = case vaccination[:name]
                       when 'Ｂ型肝炎'
                         (Date.parse(birthday) >> (vaccination[:recommended][:month].to_i + 5)) - 1
+                      when 'ロタウイルス'
+                        (Date.parse(birthday) + vaccination[:deadline][:last].to_i) - 1
                       else
                         calc_deadline(interval: vaccination[:interval], deadline: vaccination[:deadline],
                                       previous_day: previous_day, birthday: birthday)
@@ -75,27 +77,26 @@ module JpVaccination
   end
 
   def self.calc_date(period:, start_or_end:, date:)
-    case period[:date_type]
-    when 'day'
-      Date.parse(date) + period[start_or_end].to_i
-    when 'week'
-      Date.parse(date) + (period[start_or_end].to_i * 7)
-    when 'month'
-      Date.parse(date) >> period[start_or_end].to_i
-    when 'year'
-      Date.parse(date) >> (period[start_or_end].to_i * 12)
-    end
+    date = case period[:date_type]
+           when 'day'
+             Date.parse(date) + period[start_or_end].to_i
+           when 'week'
+             Date.parse(date) + (period[start_or_end].to_i * 7)
+           when 'month'
+             Date.parse(date) >> period[start_or_end].to_i
+           when 'year'
+             Date.parse(date) >> (period[start_or_end].to_i * 12)
+           end
+    return date if start_or_end != :last
+
+    period[:less_than] ? date - 1 : date
   end
 
-  def calc_deadline(interval:, deadline:, previous_day:, birthday:)
-    if interval.nil?
-      calc_date(period: deadline, start_or_end: :last, date: birthday)
-    elsif interval[:last].nil?
-      calc_date(period: deadline, start_or_end: :last, date: birthday)
-    elsif interval[:last].nil? && interval[:less_than].nil?
+  def self.calc_deadline(interval:, deadline:, previous_day:, birthday:)
+    if interval[:last]
       calc_date(period: interval, start_or_end: :last, date: previous_day)
-    elsif interval[:last] && interval[:less_than]
-      calc_date(period: interval, start_or_end: :last, date: previous_day) - 1
+    elsif deadline
+      calc_date(period: deadline, start_or_end: :last, date: birthday)
     end
   end
 

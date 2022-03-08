@@ -144,9 +144,9 @@
         "month": 3
       },
       "deadline": {
-        "date_type": "week",
+        "date_type": "day",
         "start": null,
-        "last": 24,
+        "last": 168,
         "less_than": true
       },
       "interval": {
@@ -164,9 +164,9 @@
         "month": 4
       },
       "deadline": {
-        "date_type": "week",
+        "date_type": "day",
         "start": null,
-        "last": 32
+        "last": 224
       },
       "interval": {
         "date_type": "week",
