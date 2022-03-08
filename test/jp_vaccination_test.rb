@@ -94,20 +94,35 @@ class JpVaccinationTest < Minitest::Test
     assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2026-04-01')..Date.parse('2027-03-31')
   end
 
-  def test_deadline_when_interval_is_nil
+  def test_deadline_when_hepatitis_b_1
     birthday = '2020-03-02'
     deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_1', previous_day: nil,
                                                          birthday: birthday)
     assert_equal deadline[:name], 'Ｂ型肝炎 １回目'
     assert_equal deadline[:date], Date.parse('2020-10-01')
+    one_year_birthday = Date.parse('2021-03-02')
+    assert deadline[:date] < one_year_birthday
   end
 
-  def test_deadline_when_interval_last_is_nil
+  def test_deadline_when_interval_hepatitis_b_2
     birthday = '2020-03-02'
     previous_day = '2020-05-02'
     deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_2', previous_day: previous_day,
                                                          birthday: birthday)
     assert_equal deadline[:name], 'Ｂ型肝炎 ２回目'
     assert_equal deadline[:date], Date.parse('2020-11-01')
+    one_year_birthday = Date.parse('2021-03-02')
+    assert deadline[:date] < one_year_birthday
+  end
+
+  def test_deadline_when_interval_hepatitis_b_3
+    birthday = '2020-03-02'
+    previous_day = '2020-11-01'
+    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_3', previous_day: previous_day,
+                                                         birthday: birthday)
+    assert_equal deadline[:name], 'Ｂ型肝炎 ３回目'
+    assert_equal deadline[:date], Date.parse('2021-03-01')
+    one_year_birthday = Date.parse('2021-03-02')
+    assert deadline[:date] < one_year_birthday
   end
 end
