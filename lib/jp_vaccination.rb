@@ -30,7 +30,7 @@ module JpVaccination
       elsif vaccination[:recommended][:year]
         recommended_day = Date.parse(birthday) >> vaccination[:recommended][:year].to_i * 12
       end
-      recommended_schedules << { name: name, date_type: recommended_day }
+      recommended_schedules << { name: name, date: recommended_day }
     end
 
     recommended_schedules
@@ -43,14 +43,14 @@ module JpVaccination
 
       name = "#{vaccination[:name]} #{vaccination[:period]}"
 
-      date_type = case vaccination[:interval]
-                  when nil
-                    calc_date(period: vaccination[:deadline], start_or_end: :start, date_type: previous_day)
-                  else
-                    calc_date(period: vaccination[:interval], start_or_end: :start, date_type: previous_day)
-                  end
+      date = case vaccination[:interval]
+             when nil
+               calc_date(period: vaccination[:deadline], start_or_end: :start, date: previous_day)
+             else
+               calc_date(period: vaccination[:interval], start_or_end: :start, date: previous_day)
+             end
       next_day[:name] = name
-      next_day[:date_type] = date_type
+      next_day[:date] = date
     end
     next_day
   end
@@ -61,31 +61,41 @@ module JpVaccination
       next unless key == vaccination_name.to_sym
 
       name = "#{vaccination[:name]} #{vaccination[:period]}"
-
-      deadline_date = if vaccination[:interval].nil?
-                        calc_date(period: vaccination[:deadline], start_or_end: :last, date_type: birthday)
-                      elsif vaccination[:interval][:last].nil?
-                        calc_date(period: vaccination[:deadline], start_or_end: :last, date_type: birthday)
+      deadline_date = case vaccination[:name]
+                      when 'Ｂ型肝炎'
+                        (Date.parse(birthday) >> (vaccination[:recommended][:month].to_i + 5)) - 1
                       else
-                        calc_date(period: vaccination[:interval], start_or_end: :last, date_type: previous_day)
+                        calc_deadline(interval: vaccination[:interval], deadline: vaccination[:deadline],
+                                      previous_day: previous_day, birthday: birthday)
                       end
-      deadline_date -= 1 if vaccination[:interval][:less_than] == true
       deadline[:name] = name
-      deadline[:date_type] = deadline_date
+      deadline[:date] = deadline_date
     end
     deadline
   end
 
-  def self.calc_date(period:, start_or_end:, date_type:)
+  def self.calc_date(period:, start_or_end:, date:)
     case period[:date_type]
     when 'day'
-      Date.parse(date_type) + period[start_or_end].to_i
+      Date.parse(date) + period[start_or_end].to_i
     when 'week'
-      Date.parse(date_type) + (period[start_or_end].to_i * 7)
+      Date.parse(date) + (period[start_or_end].to_i * 7)
     when 'month'
-      Date.parse(date_type) >> period[start_or_end].to_i
+      Date.parse(date) >> period[start_or_end].to_i
     when 'year'
-      Date.parse(date_type) >> (period[start_or_end].to_i * 12)
+      Date.parse(date) >> (period[start_or_end].to_i * 12)
+    end
+  end
+
+  def calc_deadline(interval:, deadline:, previous_day:, birthday:)
+    if interval.nil?
+      calc_date(period: deadline, start_or_end: :last, date: birthday)
+    elsif interval[:last].nil?
+      calc_date(period: deadline, start_or_end: :last, date: birthday)
+    elsif interval[:last].nil? && interval[:less_than].nil?
+      calc_date(period: interval, start_or_end: :last, date: previous_day)
+    elsif interval[:last] && interval[:less_than]
+      calc_date(period: interval, start_or_end: :last, date: previous_day) - 1
     end
   end
 

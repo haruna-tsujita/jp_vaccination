@@ -81,9 +81,9 @@
         "month": 2
       },
       "deadline": {
-        "date_type": "year",
+        "date_type": "month",
         "start": 2,
-        "last": 9,
+        "last": null,
         "less_than": true
       }
     },
