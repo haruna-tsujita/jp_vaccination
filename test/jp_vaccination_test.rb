@@ -59,4 +59,50 @@ class JpVaccinationTest < Minitest::Test
     assert_equal calc_date.month, 1
     assert_equal calc_date.day, 1
   end
+
+  def test_recommended_schedules # rubocop:disable Metrics/MethodLength
+    birthday = '2021-04-01'
+    expect_schedules = [{ name: 'ヒブ １回目', date_type: Date.parse('2021-06-01') },
+                        { name: 'ヒブ ２回目', date_type: Date.parse('2021-07-01') },
+                        { name: 'ヒブ ３回目', date_type: Date.parse('2021-08-01') },
+                        { name: 'ヒブ ４回目', date_type: Date.parse('2022-04-01') },
+                        { name: 'Ｂ型肝炎 １回目', date_type: Date.parse('2021-06-01') },
+                        { name: 'Ｂ型肝炎 ２回目', date_type: Date.parse('2021-07-01') },
+                        { name: 'Ｂ型肝炎 ３回目', date_type: Date.parse('2021-11-01') },
+                        { name: 'ロタウイルス １回目', date_type: Date.parse('2021-06-01') },
+                        { name: 'ロタウイルス ２回目', date_type: Date.parse('2021-07-01') },
+                        { name: 'ロタウイルス ３回目', date_type: Date.parse('2021-08-01') },
+                        { name: '小児用肺炎球菌 １回目', date_type: Date.parse('2021-06-01') },
+                        { name: '小児用肺炎球菌 ２回目', date_type: Date.parse('2021-07-01') },
+                        { name: '小児用肺炎球菌 ３回目', date_type: Date.parse('2021-08-01') },
+                        { name: '小児用肺炎球菌 ４回目', date_type: Date.parse('2022-04-01') },
+                        { name: '４種混合 第１期 １回目', date_type: Date.parse('2021-07-01') },
+                        { name: '４種混合 第１期 ２回目', date_type: Date.parse('2021-08-01') },
+                        { name: '４種混合 第１期 ３回目', date_type: Date.parse('2021-09-01') },
+                        { name: '４種混合 第１期 ４回目', date_type: Date.parse('2022-04-01') },
+                        { name: '２種混合 第２期', date_type: Date.parse('2032-04-01') },
+                        { name: 'ＢＣＧ ', date_type: Date.parse('2021-09-01') },
+                        { name: '麻しん・風しん混合 第１期', date_type: Date.parse('2022-04-01') },
+                        { name: '麻しん・風しん混合 第２期', date_type: Date.parse('2026-04-01')..Date.parse('2027-03-31') },
+                        { name: '水痘 １回目', date_type: Date.parse('2022-04-01') },
+                        { name: '水痘 ２回目', date_type: Date.parse('2022-10-01') },
+                        { name: 'おたふくかぜ １回目', date_type: Date.parse('2022-04-01') },
+                        { name: 'おたふくかぜ ２回目', date_type: Date.parse('2026-04-01')..Date.parse('2027-03-31') },
+                        { name: '日本脳炎 第１期 １回目', date_type: Date.parse('2024-04-01') },
+                        { name: '日本脳炎 第１期 ２回目', date_type: Date.parse('2024-05-01') },
+                        { name: '日本脳炎 第１期 ３回目', date_type: Date.parse('2025-04-01') },
+                        { name: '日本脳炎 第２期', date_type: Date.parse('2030-04-01') }]
+
+    assert_equal JpVaccination.recommended_schedules(birthday: birthday), expect_schedules
+  end
+
+  def test_pre_school_year_born_april_1st
+    birthday = '2020-04-01'
+    assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2025-04-01')..Date.parse('2026-03-31')
+  end
+
+  def test_pre_school_year_born_april_2nd
+    birthday = '2020-04-02'
+    assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2026-04-01')..Date.parse('2027-03-31')
+  end
 end
