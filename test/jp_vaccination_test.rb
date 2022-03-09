@@ -81,16 +81,16 @@ class JpVaccinationTest < Minitest::Test
                         { name: '日本脳炎 第１期 ３回目', date: Date.parse('2025-04-01') },
                         { name: '日本脳炎 第２期', date: Date.parse('2030-04-01') }]
 
-    assert_equal JpVaccination.recommended_schedules(birthday: birthday), expect_schedules
+    assert_equal JpVaccination.recommended_schedules(birthday), expect_schedules
   end
 
   def test_pre_school_year_born_april_1st
     birthday = '2020-04-01'
-    assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2025-04-01')..Date.parse('2026-03-31')
+    assert_equal JpVaccination.pre_school_year(birthday), Date.parse('2025-04-01')..Date.parse('2026-03-31')
   end
 
   def test_pre_school_year_born_april_2nd
     birthday = '2020-04-02'
-    assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2026-04-01')..Date.parse('2027-03-31')
+    assert_equal JpVaccination.pre_school_year(birthday), Date.parse('2026-04-01')..Date.parse('2027-03-31')
   end
 end
