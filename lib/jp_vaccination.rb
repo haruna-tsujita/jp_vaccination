@@ -92,14 +92,6 @@ module JpVaccination
     period[:less_than] ? date - 1 : date
   end
 
-  def self.calc_deadline(interval:, deadline:, previous_day:, birthday:)
-    if interval[:last]
-      calc_date(period: interval, start_or_end: :last, date: previous_day)
-    elsif deadline
-      calc_date(period: deadline, start_or_end: :last, date: birthday)
-    end
-  end
-
   def self.pre_school_year(birthday:)
     five_years_old = Date.parse(birthday) >> 12 * 5
     case five_years_old.month

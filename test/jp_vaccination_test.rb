@@ -3,7 +3,7 @@
 require_relative './test_helper'
 require_relative '../lib/jp_vaccination'
 
-class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
+class JpVaccinationTest < Minitest::Test
   def test_next_day_when_interval_nil
     vaccination = 'hib_1'
     birthday = '2020-01-01'
@@ -92,67 +92,5 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_pre_school_year_born_april_2nd
     birthday = '2020-04-02'
     assert_equal JpVaccination.pre_school_year(birthday: birthday), Date.parse('2026-04-01')..Date.parse('2027-03-31')
-  end
-
-  def test_calc_deadline_when_hepatitis_b_1st
-    birthday = '2020-03-02'
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_1', previous_day: nil,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'Ｂ型肝炎 １回目'
-    assert_equal deadline[:date], Date.parse('2020-10-01')
-    one_year_birthday = Date.parse('2021-03-02')
-    assert deadline[:date] < one_year_birthday
-  end
-
-  def test_calc_deadline_when_interval_hepatitis_b_2nd
-    birthday = '2020-03-02'
-    previous_day = '2020-05-02'
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_2', previous_day: previous_day,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'Ｂ型肝炎 ２回目'
-    assert_equal deadline[:date], Date.parse('2020-11-01')
-    one_year_birthday = Date.parse('2021-03-02')
-    assert deadline[:date] < one_year_birthday
-  end
-
-  def test_calc_deadline_when_interval_hepatitis_b_3rd
-    birthday = '2020-03-02'
-    previous_day = '2020-11-01'
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'hepatitis_B_3', previous_day: previous_day,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'Ｂ型肝炎 ３回目'
-    assert_equal deadline[:date], Date.parse('2021-03-01')
-    one_year_birthday = Date.parse('2021-03-02')
-    assert deadline[:date] < one_year_birthday
-  end
-
-  def test_calc_deadline_when_rotavirus_1st
-    birthday = '2020-03-02'
-    previous_day = nil
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'rotavirus_1', previous_day: previous_day,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'ロタウイルス １回目'
-    assert_equal deadline[:date], Date.parse('2020-06-13')
-    assert deadline[:date] <= Date.parse(birthday) + JpVaccination.find('rotavirus_1').deadline[:last].to_i
-  end
-
-  def test_calc_deadline_when_rotavirus_2nd
-    birthday = '2020-03-02'
-    previous_day = '2020-06-13'
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'rotavirus_2', previous_day: previous_day,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'ロタウイルス ２回目'
-    assert_equal deadline[:date], Date.parse('2020-08-16')
-    assert deadline[:date] <= Date.parse(birthday) + JpVaccination.find('rotavirus_2').deadline[:last].to_i
-  end
-
-  def test_calc_deadline_when_rotavirus_3rd
-    birthday = '2020-03-02'
-    previous_day = '2020-08-16'
-    deadline = JpVaccination.deadline_of_the_vaccination(vaccination_name: 'rotavirus_3', previous_day: previous_day,
-                                                         birthday: birthday)
-    assert_equal deadline[:name], 'ロタウイルス ３回目'
-    assert_equal deadline[:date], Date.parse('2020-10-11')
-    assert deadline[:date] <= Date.parse(birthday) + JpVaccination.find('rotavirus_3').deadline[:last].to_i
   end
 end
