@@ -36,7 +36,7 @@ module JpVaccination
     recommended_schedules
   end
 
-  def self.next_day(vaccination_name:, previous_day:)
+  def self.next_day(vaccination_name:, last_time:)
     next_day = {}
     json_data.each do |key, vaccination|
       next unless key == vaccination_name.to_sym
@@ -45,9 +45,9 @@ module JpVaccination
 
       date = case vaccination[:interval]
              when nil
-               calc_date(period: vaccination[:deadline], start_or_end: :start, date: previous_day)
+               calc_date(period: vaccination[:deadline], start_or_end: :start, date: last_time)
              else
-               calc_date(period: vaccination[:interval], start_or_end: :start, date: previous_day)
+               calc_date(period: vaccination[:interval], start_or_end: :start, date: last_time)
              end
       next_day[:name] = name
       next_day[:date] = date
@@ -55,7 +55,7 @@ module JpVaccination
     next_day
   end
 
-  def self.deadline_of_the_vaccination(vaccination_name:, previous_day:, birthday:)
+  def self.deadline_of_the_vaccination(vaccination_name:, last_time:, birthday:)
     deadline = {}
     json_data.each do |key, vaccination|
       next unless key == vaccination_name.to_sym
@@ -68,7 +68,7 @@ module JpVaccination
                         (Date.parse(birthday) + vaccination[:deadline][:last].to_i) - 1
                       else
                         calc_deadline(interval: vaccination[:interval], deadline: vaccination[:deadline],
-                                      previous_day: previous_day, birthday: birthday)
+                                      last_time: last_time, birthday: birthday)
                       end
       deadline[:name] = name
       deadline[:date] = deadline_date
