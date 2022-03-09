@@ -7,11 +7,16 @@ module JpVaccination
     def initialize(data)
       @name = data[:name]
       @period = data[:period]
+      @regular = data[:regular]
+      @type = data[:type]
+      @recommended = data[:recommended]
       @deadline = data[:deadline]
       @interval = data[:interval]
-      @regular = data[:regular]
-      @recommended = data[:recommended]
-      @type = data[:type]
+      @description = data[:description]
+    end
+
+    def formal_name
+      "#{@name} #{@period}"
     end
   end
 end

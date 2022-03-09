@@ -12,8 +12,7 @@
         "start": 2,
         "end": 7,
         "less_than": true
-      },
-      "description": "①-②-③はそれぞれ27-56日（4-8週）あける ③-④は7-13か月あける"
+      }
     },
     "hib_2": {
       "name": "ヒブ",
@@ -133,8 +132,7 @@
         "start": null,
         "end": 104,
         "less_than": true
-      },
-      "description": "生後6週から接種可能、①は8週-15週未満を推奨する 1価ワクチン（ロタリックス）:①-②は4週以上あける（計2回） ５価ワクチン（ロタテック）:①-②-③は4週以上あける（計3回）"
+      }
     },
     "rotavirus_2": {
       "name": "ロタウイルス",
@@ -187,8 +185,7 @@
         "start": 2,
         "end": 7,
         "less_than": true
-      },
-      "description": "①-②-③はそれぞれ27日（4週）以上あける。③-④は60日(2か月)以上あけて、かつ1歳から1歳3か月で接種。"
+      }
     },
     "pneumococcus_2": {
       "name": "小児用肺炎球菌",
@@ -262,8 +259,7 @@
         "start": 3,
         "end": 12,
         "less_than": true
-      },
-      "description": "①-②-③はそれぞれ20-56日（3-8週）あける。③-④は6か月以上あけ、標準的には③終了後12-18か月の間に接種。"
+      }
     },
     "DPT_IPV_2": {
       "name": "４種混合",
@@ -319,8 +315,7 @@
         "start": 11,
         "end": 13,
         "less_than": true
-      },
-      "description": "①11歳から12歳に達するまで"
+      }
     },
     "BCG_1": {
       "name": "ＢＣＧ",
@@ -335,8 +330,7 @@
         "start": 5,
         "end": 8,
         "less_than": true
-      },
-      "description": "12か月未満に接種 標準的には5-8か月未満に接種"
+      }
     },
     "MR_1": {
       "name": "麻しん・風しん混合",
@@ -374,8 +368,7 @@
         "start": 12,
         "end": 15,
         "less_than": true
-      },
-      "description": "①生後12-15か月 ②1回目から6-12か月あける"
+      }
     },
     "chickenpox_2": {
       "name": "水痘",
@@ -408,8 +401,7 @@
         "date_type": "month",
         "start": 12,
         "end": 16
-      },
-      "description": "①1歳以上"
+      }
     },
     "mumps_2": {
       "name": "おたふくかぜ",
@@ -431,8 +423,7 @@
         "start": 3,
         "end": 4,
         "less_than": true
-      },
-      "description": "①-②3歳、①-②は6-28日（1-4週）あける ③4歳、②から6か月から1年あける ④9歳"
+      }
     },
     "Japanese_encephalitis_2": {
       "name": "日本脳炎",
