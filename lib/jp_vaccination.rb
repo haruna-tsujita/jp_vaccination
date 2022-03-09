@@ -55,27 +55,6 @@ module JpVaccination
     next_day
   end
 
-  def self.deadline_of_the_vaccination(vaccination_name:, last_time:, birthday:)
-    deadline = {}
-    json_data.each do |key, vaccination|
-      next unless key == vaccination_name.to_sym
-
-      name = "#{vaccination[:name]} #{vaccination[:period]}"
-      deadline_date = case vaccination[:name]
-                      when 'Ｂ型肝炎'
-                        (Date.parse(birthday) >> (vaccination[:recommended][:month].to_i + 5)) - 1
-                      when 'ロタウイルス'
-                        (Date.parse(birthday) + vaccination[:deadline][:last].to_i) - 1
-                      else
-                        calc_deadline(interval: vaccination[:interval], deadline: vaccination[:deadline],
-                                      last_time: last_time, birthday: birthday)
-                      end
-      deadline[:name] = name
-      deadline[:date] = deadline_date
-    end
-    deadline
-  end
-
   def self.calc_date(period:, start_or_end:, date:)
     date = case period[:date_type]
            when 'day'
@@ -87,7 +66,7 @@ module JpVaccination
            when 'year'
              Date.parse(date) >> (period[start_or_end].to_i * 12)
            end
-    return date if start_or_end != :last
+    return date if start_or_end != :end
 
     period[:less_than] ? date - 1 : date
   end

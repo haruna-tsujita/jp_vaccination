@@ -10,7 +10,7 @@
       "deadline": {
         "date_type": "month",
         "start": 2,
-        "last": 7,
+        "end": 7,
         "less_than": true
       },
       "description": "①-②-③はそれぞれ27-56日（4-8週）あける ③-④は7-13か月あける"
@@ -25,13 +25,13 @@
       "deadline": {
         "date_type": "month",
         "start": null,
-        "last": 12,
+        "end": 12,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 27,
-        "last": 56
+        "end": 56
       }
     },
     "hib_3": {
@@ -44,13 +44,13 @@
       "deadline": {
         "date_type": "month",
         "start": null,
-        "last": 12,
+        "end": 12,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 27,
-        "last": 56
+        "end": 56
       }
     },
     "hib_4": {
@@ -63,13 +63,13 @@
       "deadline": {
         "date_type": "month",
         "start": null,
-        "last": 60,
+        "end": 60,
         "less_than": true
       },
       "interval": {
         "date_type": "month",
         "start": 7,
-        "last": 13,
+        "end": 13,
         "less_than": true
       }
     },
@@ -83,7 +83,7 @@
       "deadline": {
         "date_type": "month",
         "start": 2,
-        "last": null,
+        "end": null,
         "less_than": true
       }
     },
@@ -97,7 +97,7 @@
       "interval": {
         "date_type": "day",
         "start": 27,
-        "last": null
+        "end": null
       },
       "description": "①生後2か月②生後3か月③生後7-8か月 ①-②は27日（4週）以上、①-③は139日（20週）以上あける"
     },
@@ -111,13 +111,13 @@
       "deadline": {
         "date_type": "year",
         "start": null,
-        "last": 1,
+        "end": 1,
         "less_than": true
       },
       "interval": {
         "date_type": "week",
         "start": 16,
-        "last": 20,
+        "end": 20,
         "less_than": true
       }
     },
@@ -131,7 +131,7 @@
       "deadline": {
         "date_type": "day",
         "start": null,
-        "last": 104,
+        "end": 104,
         "less_than": true
       },
       "description": "生後6週から接種可能、①は8週-15週未満を推奨する 1価ワクチン（ロタリックス）:①-②は4週以上あける（計2回） ５価ワクチン（ロタテック）:①-②-③は4週以上あける（計3回）"
@@ -146,13 +146,13 @@
       "deadline": {
         "date_type": "day",
         "start": null,
-        "last": 168,
+        "end": 168,
         "less_than": true
       },
       "interval": {
         "date_type": "week",
         "start": 4,
-        "last": null,
+        "end": null,
         "less_than": true
       }
     },
@@ -166,12 +166,12 @@
       "deadline": {
         "date_type": "day",
         "start": null,
-        "last": 224
+        "end": 224
       },
       "interval": {
         "date_type": "week",
         "start": 4,
-        "last": null,
+        "end": null,
         "less_than": true
       }
     },
@@ -185,7 +185,7 @@
       "deadline": {
         "date_type": "month",
         "start": 2,
-        "last": 7,
+        "end": 7,
         "less_than": true
       },
       "description": "①-②-③はそれぞれ27日（4週）以上あける。③-④は60日(2か月)以上あけて、かつ1歳から1歳3か月で接種。"
@@ -200,13 +200,13 @@
       "deadline": {
         "date_type": "month",
         "start": null,
-        "last": 12,
+        "end": 12,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 27,
-        "last": 56,
+        "end": 56,
         "less_than": true
       }
     },
@@ -220,13 +220,13 @@
       "deadline": {
         "date_type": "month",
         "start": null,
-        "last": 12,
+        "end": 12,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 27,
-        "last": 56,
+        "end": 56,
         "less_than": true
       }
     },
@@ -240,13 +240,13 @@
       "deadline": {
         "date_type": "month",
         "start": 12,
-        "last": 15,
+        "end": 15,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 60,
-        "last": null,
+        "end": null,
         "less_than": true
       }
     },
@@ -260,7 +260,7 @@
       "deadline": {
         "date_type": "month",
         "start": 3,
-        "last": 12,
+        "end": 12,
         "less_than": true
       },
       "description": "①-②-③はそれぞれ20-56日（3-8週）あける。③-④は6か月以上あけ、標準的には③終了後12-18か月の間に接種。"
@@ -276,7 +276,7 @@
       "interval": {
         "date_type": "day",
         "start": 20,
-        "last": 56
+        "end": 56
       }
     },
     "DPT_IPV_3": {
@@ -290,7 +290,7 @@
       "interval": {
         "date_type": "day",
         "start": 20,
-        "last": 56
+        "end": 56
       }
     },
     "DPT_IPV_4": {
@@ -304,7 +304,7 @@
       "interval": {
         "date_type": "month",
         "start": 12,
-        "last": 18
+        "end": 18
       }
     },
     "DT_1": {
@@ -317,7 +317,7 @@
       "deadline": {
         "date_type": "year",
         "start": 11,
-        "last": 13,
+        "end": 13,
         "less_than": true
       },
       "description": "①11歳から12歳に達するまで"
@@ -333,7 +333,7 @@
       "deadline": {
         "date_type": "month",
         "start": 5,
-        "last": 8,
+        "end": 8,
         "less_than": true
       },
       "description": "12か月未満に接種 標準的には5-8か月未満に接種"
@@ -348,7 +348,7 @@
       "deadline": {
         "date_type": "year",
         "start": 1,
-        "last": 2,
+        "end": 2,
         "less_than": true
       },
       "description": "①1歳以上2歳未満 ②5歳以上7歳未満（小学校入学前の1年間）"
@@ -372,7 +372,7 @@
       "deadline": {
         "date_type": "month",
         "start": 12,
-        "last": 15,
+        "end": 15,
         "less_than": true
       },
       "description": "①生後12-15か月 ②1回目から6-12か月あける"
@@ -387,13 +387,13 @@
       "deadline": {
         "date_type": "month",
         "start": 15,
-        "last": 36,
+        "end": 36,
         "less_than": true
       },
       "interval": {
         "date_type": "month",
         "start": 3,
-        "last": 12
+        "end": 12
       }
     },
     "mumps_1": {
@@ -407,7 +407,7 @@
       "deadline": {
         "date_type": "month",
         "start": 12,
-        "last": 16
+        "end": 16
       },
       "description": "①1歳以上"
     },
@@ -429,7 +429,7 @@
       "deadline": {
         "date_type": "year",
         "start": 3,
-        "last": 4,
+        "end": 4,
         "less_than": true
       },
       "description": "①-②3歳、①-②は6-28日（1-4週）あける ③4歳、②から6か月から1年あける ④9歳"
@@ -444,13 +444,13 @@
       "deadline": {
         "date_type": "year",
         "start": 3,
-        "last": 4,
+        "end": 4,
         "less_than": true
       },
       "interval": {
         "date_type": "day",
         "start": 6,
-        "last": 28
+        "end": 28
       }
     },
     "Japanese_encephalitis_3": {
@@ -463,13 +463,13 @@
       "deadline": {
         "date_type": "year",
         "start": 4,
-        "last": 5,
+        "end": 5,
         "less_than": true
       },
       "interval": {
         "date_type": "month",
         "start": 6,
-        "last": 12
+        "end": 12
       }
     },
     "Japanese_encephalitis_4": {
@@ -482,7 +482,7 @@
       "deadline": {
         "date_type": "year",
         "start": 9,
-        "last": 13,
+        "end": 13,
         "less_than": true
       }
     }
