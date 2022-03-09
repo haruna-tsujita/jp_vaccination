@@ -4,10 +4,18 @@ require_relative './test_helper'
 require_relative '../lib/jp_vaccination'
 
 class JpVaccinationTest < Minitest::Test
+  def test_find_when_argument_is_not_exist_key
+    not_exist_key = 'hib_5'
+    e = assert_raises ArgumentError do
+      JpVaccination.find(not_exist_key)
+    end
+    assert_equal 'The vaccination_key doesn\'t exist.', e.message
+  end
+
   def test_next_day_when_interval_nil
     vaccination = 'hib_1'
     birthday = '2020-01-01'
-    next_day = JpVaccination.next_day(vaccination_name: vaccination, last_time: birthday)
+    next_day = JpVaccination.next_day(vaccination_key: vaccination, last_time: birthday)
     assert_equal next_day[:name], 'ヒブ １回目'
     assert_equal next_day[:date], Date.parse('2020-03-01')
   end
@@ -15,9 +23,17 @@ class JpVaccinationTest < Minitest::Test
   def test_next_day_when_interval
     vaccination = 'hepatitis_B_2'
     last_time = '2020-01-01'
-    next_day = JpVaccination.next_day(vaccination_name: vaccination, last_time: last_time)
+    next_day = JpVaccination.next_day(vaccination_key: vaccination, last_time: last_time)
     assert_equal next_day[:name], 'Ｂ型肝炎 ２回目'
     assert_equal next_day[:date], Date.parse('2020-01-28')
+  end
+
+  def test_next_day_method_when_argument_is_not_exist_key
+    not_exist_key = 'hib_5'
+    e = assert_raises ArgumentError do
+      JpVaccination.next_day(vaccination_key: not_exist_key, last_time: '2020-01-02')
+    end
+    assert_equal 'The vaccination_key doesn\'t exist.', e.message
   end
 
   def test_calc_date_when_day

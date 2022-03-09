@@ -13,7 +13,9 @@ module JpVaccination
     end
 
     def find(vaccination)
-      JpVaccination::Vaccination.new(json_data[vaccination.to_sym])
+      data = json_data[vaccination.to_sym]
+      output_argument_error(data)
+      JpVaccination::Vaccination.new(data)
     end
 
     def recommended_schedules(birthday)
@@ -31,10 +33,10 @@ module JpVaccination
       end
     end
 
-    def next_day(vaccination_name:, last_time:)
+    def next_day(vaccination_key:, last_time:)
       next_day = {}
       json_data.each do |key, vaccination|
-        next unless key == vaccination_name.to_sym
+        next unless key == vaccination_key.to_sym
 
         name = "#{vaccination[:name]} #{vaccination[:period]}"
 
@@ -47,6 +49,7 @@ module JpVaccination
         next_day[:name] = name
         next_day[:date] = date
       end
+      output_argument_error(next_day[:name])
       next_day
     end
 
@@ -77,6 +80,10 @@ module JpVaccination
         year = fifth_birthday.year + 1
       end
       Date.new(year, 4, 1)..Date.new(year + 1, 3, 31)
+    end
+
+    def output_argument_error(not_exist_key)
+      raise ArgumentError, 'The vaccination_key doesn\'t exist.' if not_exist_key.nil?
     end
   end
 end
