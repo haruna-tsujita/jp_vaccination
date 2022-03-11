@@ -3,7 +3,7 @@
 require_relative './test_helper'
 require_relative '../lib/jp_vaccination'
 
-class JpVaccinationTest < Minitest::Test
+class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_find_when_argument_is_not_exist_key
     not_exist_key = 'hib_5'
     e = assert_raises ArgumentError do
@@ -117,7 +117,7 @@ class JpVaccinationTest < Minitest::Test
                        '2022-08-14' => ['４種混合 第１期 ２回目', 'ヒブ ３回目', 'ロタウイルス ３回目', '小児用肺炎球菌 ３回目'],
                        '2022-09-14' => ['４種混合 第１期 ３回目', 'ＢＣＧ '],
                        '2022-11-14' => ['Ｂ型肝炎 ３回目'],
-                        '2023-04-14' => ['ヒブ ４回目', '４種混合 第１期 ４回目', '麻しん・風しん混合 第１期', '小児用肺炎球菌 ４回目', '水痘 １回目',
+                       '2023-04-14' => ['ヒブ ４回目', '４種混合 第１期 ４回目', '麻しん・風しん混合 第１期', '小児用肺炎球菌 ４回目', '水痘 １回目',
                                         'おたふくかぜ １回目'],
                        '2023-10-14' => ['水痘 ２回目'],
                        '2025-04-14' => ['日本脳炎 第１期 １回目'],
@@ -136,7 +136,8 @@ class JpVaccinationTest < Minitest::Test
                        Date.parse('2020-06-29') => ['４種混合 第１期 ２回目', 'ヒブ ３回目', 'ロタウイルス ３回目', '小児用肺炎球菌 ３回目'],
                        Date.parse('2020-07-29') => ['４種混合 第１期 ３回目', 'ＢＣＧ '],
                        Date.parse('2020-09-29') => ['Ｂ型肝炎 ３回目'],
-                       Date.parse('2021-02-28') => ['ヒブ ４回目', '４種混合 第１期 ４回目', '麻しん・風しん混合 第１期', '小児用肺炎球菌 ４回目', '水痘 １回目', 'おたふくかぜ １回目'],
+                       Date.parse('2021-02-28') => ['ヒブ ４回目', '４種混合 第１期 ４回目', '麻しん・風しん混合 第１期', '小児用肺炎球菌 ４回目', '水痘 １回目',
+                                                    'おたふくかぜ １回目'],
                        Date.parse('2021-08-29') => ['水痘 ２回目'],
                        Date.parse('2023-02-28') => ['日本脳炎 第１期 １回目'],
                        Date.parse('2023-03-29') => ['日本脳炎 第１期 ２回目'],
