@@ -321,7 +321,7 @@
       "name": "ＢＣＧ",
       "period": "",
       "regular": true,
-      "type": "生",
+      "type": "生ワクチン",
       "recommended": {
         "month": 5
       },
@@ -336,6 +336,7 @@
       "name": "麻しん・風しん混合",
       "period": "第１期",
       "regular": true,
+      "type": "生ワクチン",
       "recommended": {
         "month": 12
       },
@@ -350,6 +351,7 @@
     "MR_2": {
       "name": "麻しん・風しん混合",
       "period": "第２期",
+      "type": "生ワクチン",
       "regular": true,
       "recommended": "小学校入学前１年間",
       "deadline": {
@@ -360,6 +362,7 @@
       "name": "水痘",
       "period": "１回目",
       "regular": true,
+      "type": "生ワクチン",
       "recommended": {
         "month": 12
       },
@@ -374,6 +377,7 @@
       "name": "水痘",
       "period": "２回目",
       "regular": true,
+      "type": "生ワクチン",
       "recommended": {
         "month": 18
       },
@@ -393,7 +397,7 @@
       "name": "おたふくかぜ",
       "period": "１回目",
       "regular": false,
-      "type": "生",
+      "type": "生ワクチン",
       "recommended": {
         "month": 12
       },
@@ -407,7 +411,7 @@
       "name": "おたふくかぜ",
       "period": "２回目",
       "regular": false,
-      "type": "生",
+      "type": "生ワクチン",
       "recommended": "小学校入学前１年間",
       "deadline": null
     },
