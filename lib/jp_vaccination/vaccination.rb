@@ -12,7 +12,6 @@ module JpVaccination
       @recommended = data[:recommended]
       @deadline = data[:deadline]
       @interval = data[:interval]
-      @description = data[:description]
     end
 
     def formal_name

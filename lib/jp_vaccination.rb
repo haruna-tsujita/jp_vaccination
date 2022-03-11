@@ -18,19 +18,34 @@ module JpVaccination
       JpVaccination::Vaccination.new(data)
     end
 
-    def recommended_schedules(birthday)
+    def recommended_schedules(birthday, convert_to_strings = nil)
       json_data.map do |_key, vaccination|
         name = "#{vaccination[:name]} #{vaccination[:period]}"
 
         if vaccination[:recommended].class != Hash
-          recommended_day = pre_school_year(birthday)
+          recommended_day = pre_school_year(birthday, convert_to_strings)
         elsif vaccination[:recommended][:month]
           recommended_day = Date.parse(birthday) >> vaccination[:recommended][:month].to_i
         elsif vaccination[:recommended][:year]
           recommended_day = Date.parse(birthday) >> vaccination[:recommended][:year].to_i * 12
         end
+        if convert_to_strings && recommended_day.instance_of?(Date)
+          recommended_day = recommended_day.strftime('%Y-%m-%d')
+        end
         { name: name, date: recommended_day }
       end
+    end
+
+    def sort_recommended_schedules(birthday, convert_to_strings = nil)
+      ary =
+        recommended_schedules(birthday, convert_to_strings).map do |key, _value|
+          { key[:name] => key[:date] }
+        end
+
+      flatten_hash = {}.merge(*ary)
+      flatten_hash.sort_by do |_name, date|
+        date.instance_of?(Date) || date.instance_of?(String) ? date : date.first
+      end.to_h.each_key.group_by { |key| flatten_hash[key] }
     end
 
     def next_day(vaccination_key:, last_time:)
@@ -69,17 +84,17 @@ module JpVaccination
       period[:less_than] ? date - 1 : date
     end
 
-    def pre_school_year(birthday)
+    def pre_school_year(birthday, convert_to_strings = nil)
       fifth_birthday = Date.parse(birthday) >> 12 * 5
       case fifth_birthday.month
       when 1..3
         year = fifth_birthday.year
       when 4
-        year = fifth_birthday.day == 1 ? fifth_birthday.year : fifth_birthday.year + 1
+        year = fifth_birthday.day == 1 ? fifth_birthday.year : fifth_birthday.year.next
       when 5..12
-        year = fifth_birthday.year + 1
+        year = fifth_birthday.year.next
       end
-      Date.new(year, 4, 1)..Date.new(year + 1, 3, 31)
+      convert_to_strings ? "#{year}-04-01〜#{year.next}-03-31" : Date.new(year, 4, 1)..Date.new(year.next, 3, 31)
     end
 
     def output_argument_error(not_exist_key)
