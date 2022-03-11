@@ -46,7 +46,8 @@ module JpVaccination
       sort_date_ary = flatten_hash.sort_by do |_name, date|
         date.instance_of?(Date) || date.instance_of?(String) ? date : date.first
       end
-      sort_date_ary.to_h.each_key.group_by { |key| flatten_hash[key] }
+      sort_date = sort_date_ary.to_h.each_key.group_by { |key| flatten_hash[key] }
+      sort_name = sort_date.to_h.each_value{|name_ary| name_ary.sort}
     end
 
     def next_day(vaccination_key:, last_time:)

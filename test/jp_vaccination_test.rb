@@ -145,6 +145,6 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
                        Date.parse('2025-04-01')..Date.parse('2026-03-31') => ['麻しん・風しん混合 第２期', 'おたふくかぜ ２回目'],
                        Date.parse('2029-02-28') => ['日本脳炎 第２期'],
                        Date.parse('2031-02-28') => ['２種混合 第２期'] }
-    assert_equal JpVaccination.sort_recommended_schedules(birthday), sort_schedules
+    assert_equal sort_schedules, JpVaccination.sort_recommended_schedules(birthday)
   end
 end
