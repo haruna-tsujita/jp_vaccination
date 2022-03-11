@@ -16,16 +16,16 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     vaccination = 'hib_1'
     birthday = '2020-01-01'
     next_day = JpVaccination.next_day(vaccination_key: vaccination, last_time: birthday)
-    assert_equal next_day[:name], 'ヒブ １回目'
-    assert_equal next_day[:date], Date.parse('2020-03-01')
+    assert_equal 'ヒブ １回目', next_day[:name]
+    assert_equal Date.parse('2020-03-01'), next_day[:date]
   end
 
   def test_next_day_when_interval
     vaccination = 'hepatitis_B_2'
     last_time = '2020-01-01'
     next_day = JpVaccination.next_day(vaccination_key: vaccination, last_time: last_time)
-    assert_equal next_day[:name], 'Ｂ型肝炎 ２回目'
-    assert_equal next_day[:date], Date.parse('2020-01-28')
+    assert_equal 'Ｂ型肝炎 ２回目', next_day[:name]
+    assert_equal Date.parse('2020-01-28'), next_day[:date]
   end
 
   def test_next_day_method_when_argument_is_not_exist_key
@@ -40,28 +40,28 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     vaccination_period = JpVaccination.json_data['pneumococcus_2'.to_sym][:interval]
     last_time = '2020-01-01'
     calc_date = JpVaccination.calc_date(period: vaccination_period, start_or_end: :start, date: last_time)
-    assert_equal calc_date, Date.parse('2020-01-28')
+    assert_equal Date.parse('2020-01-28'), calc_date
   end
 
   def test_calc_date_when_week
     vaccination_period = JpVaccination.json_data['rotavirus_2'.to_sym][:interval]
     last_time = '2020-01-01'
     calc_date = JpVaccination.calc_date(period: vaccination_period, start_or_end: :start, date: last_time)
-    assert_equal calc_date, Date.parse('2020-01-29')
+    assert_equal Date.parse('2020-01-29'), calc_date
   end
 
   def test_calc_date_when_month
     vaccination_period = JpVaccination.json_data['Japanese_encephalitis_3'.to_sym][:interval]
     last_time = '2020-01-01'
     calc_date = JpVaccination.calc_date(period: vaccination_period, start_or_end: :start, date: last_time)
-    assert_equal calc_date, Date.parse('2020-07-01')
+    assert_equal Date.parse('2020-07-01'), calc_date
   end
 
   def test_calc_date_when_year
     vaccination_period = JpVaccination.json_data['MR_1'.to_sym][:deadline]
     birthday = '2020-01-01'
     calc_date = JpVaccination.calc_date(period: vaccination_period, start_or_end: :start, date: birthday)
-    assert_equal calc_date, Date.parse('2021-01-01')
+    assert_equal Date.parse('2021-01-01'), calc_date
   end
 
   def test_recommended_schedules # rubocop:disable Metrics/MethodLength
@@ -97,17 +97,17 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
                         { name: '日本脳炎 第１期 ３回目', date: Date.parse('2025-04-01') },
                         { name: '日本脳炎 第２期', date: Date.parse('2030-04-01') }]
 
-    assert_equal JpVaccination.recommended_schedules(birthday), expect_schedules
+    assert_equal expect_schedules, JpVaccination.recommended_schedules(birthday)
   end
 
   def test_pre_school_year_born_april_1st
     birthday = '2020-04-01'
-    assert_equal JpVaccination.pre_school_year(birthday), Date.parse('2025-04-01')..Date.parse('2026-03-31')
+    assert_equal Date.parse('2025-04-01')..Date.parse('2026-03-31'), JpVaccination.pre_school_year(birthday)
   end
 
   def test_pre_school_year_born_april_2nd
     birthday = '2020-04-02'
-    assert_equal JpVaccination.pre_school_year(birthday, true), '2026-04-01〜2027-03-31'
+    assert_equal '2026-04-01〜2027-03-31', JpVaccination.pre_school_year(birthday, true)
   end
 
   def test_sort_recommended_schedules
@@ -145,6 +145,6 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/ClassLength
                        Date.parse('2025-04-01')..Date.parse('2026-03-31') => ['麻しん・風しん混合 第２期', 'おたふくかぜ ２回目'],
                        Date.parse('2029-02-28') => ['日本脳炎 第２期'],
                        Date.parse('2031-02-28') => ['２種混合 第２期'] }
-    assert_equal sort_schedules, JpVaccination.sort_recommended_schedules(birthday)
+    assert_equal JpVaccination.sort_recommended_schedules(birthday), sort_schedules
   end
 end
