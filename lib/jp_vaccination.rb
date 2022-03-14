@@ -7,13 +7,8 @@ require_relative './jp_vaccination/version'
 
 module JpVaccination
   class << self
-    def json_data
-      vaccinations = File.open('./data/vaccinations.json', 'r', &:read)
-      JSON.parse(vaccinations, symbolize_names: true)[:vaccinations]
-    end
-
-    def find(vaccination)
-      data = json_data[vaccination.to_sym]
+    def find(vaccination_key)
+      data = json_data[vaccination_key.to_sym]
       output_argument_error(data)
       JpVaccination::Vaccination.new(data)
     end
@@ -49,7 +44,7 @@ module JpVaccination
       ary_sort_date.to_h.each_key.group_by { |date| flatten_hash[date] }.each_pair { |_date, name_ary| name_ary.sort! }
     end
 
-    def next_day(vaccination_key:, last_time:)
+    def next_day(vaccination_key, last_time)
       next_day = {}
       json_data.each do |key, vaccination|
         next unless key == vaccination_key.to_sym
@@ -67,6 +62,13 @@ module JpVaccination
       end
       output_argument_error(next_day[:name])
       next_day
+    end
+
+    private
+
+    def json_data
+      json_file = File.expand_path('../data/vaccinations.json', __dir__)
+      JSON.parse(File.read(json_file), symbolize_names: true)[:vaccinations]
     end
 
     def calc_date(period:, start_or_end:, date:)
