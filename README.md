@@ -36,6 +36,9 @@ chickenpox_1st.type 生ワクチン
 chickenpox_1st.recommended {:month=>12}
 chickenpox_1st.deadline {:date_type=>"month", :start=>12, :end=>15, :less_than=>true}
 chickenpox_1st.interval nil
+
+# name + period
+chickenpox_1st.formal_name "水痘 １回目"
 ```
 Example data.
 |column|data|example|title|
@@ -109,7 +112,7 @@ pp JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = true)
     "2031-03-01"=>["日本脳炎 第２期"],
     "2033-03-01"=>["２種混合 第２期"]}
 ```
-
+default: convert_to_strings = nil
 ```ruby
 pp JpVaccination.sort_recommended_schedules('2022-03-01')
 => {#<Date: 2022-05-01 ((2459701j,0s,0n),+0s,2299161j)>=>["小児用肺炎球菌 １回目", "ヒブ １回目", "ロタウイルス １回目", "Ｂ型肝炎 １回目"],…
