@@ -26,6 +26,8 @@ require 'JpVaccination'
 ```
 ### Access to vaccination data.
 Pass the argument as a string for the [vaccination_key](#about-vaccination_key).
+`JpVaccination.find(vaccination_key)`
+
 ```ruby
 chickenpox_1st = JpVaccination.find('chickenpox_1')
 
@@ -52,10 +54,13 @@ deadline[^2]|Hash|{<br> date_type: "month",<br>start: 15,<br> end: 36,<br> less_
 interval[^2]|Hash|{ <br>date_type: "month",<br> start: 3,<br> end: 12 <br>}|接種間隔|
 
 [^1]:`nil except for live vaccines.`
-[^2]:5~36 months:{date_type:"month",start:15,end:36},less_than:true` is less than.
+[^2]:5~36 months:{date_type:"month",start:15,end:36},`less_than:true` is less than.
 `less_than:false` is below.
 
 ### Calculate all recommended dates of vaccination
+`JpVaccination.recommended_schedules(birthday, convert_to_strings)`
+* default convert_to_string: nil
+
 ```rb
 birthday = '2022-03-01'
 pp JpVaccination.recommended_schedules(birthday, convert_to_strings = true)
@@ -93,6 +98,9 @@ pp JpVaccination.recommended_schedules(birthday, convert_to_strings = true)
     {:name=>"日本脳炎 第２期", :date=>"2031-03-01"}]
 ```
 ### Sort recommended vaccination dates in ascending order
+`JpVaccination.sort_recommended_schedules(birthday, convert_to_strings)`
+* default convert_to_string: nil
+
 ```rb
 birthday = '2022-03-01'
 pp JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = true)
@@ -112,23 +120,29 @@ pp JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = true)
     "2031-03-01"=>["日本脳炎 第２期"],
     "2033-03-01"=>["２種混合 第２期"]}
 ```
+
 default: convert_to_strings = nil
+`JpVaccination.sort_recommended_schedules(birthday, nil)` or
+`JpVaccination.sort_recommended_schedules(birthday)`
 ```ruby
 pp JpVaccination.sort_recommended_schedules('2022-03-01')
 => {#<Date: 2022-05-01 ((2459701j,0s,0n),+0s,2299161j)>=>["小児用肺炎球菌 １回目", "ヒブ １回目", "ロタウイルス １回目", "Ｂ型肝炎 １回目"],…
 ```
 
 ### Calculate the next available vaccination date from the date of the previous vaccination.
+`JpVaccination.next_day(vaccination_key, last_time)`
+
 ```rb
-pp JpVaccination.next_day(vaccination_key:'hepatitis_B_2', last_time: '2020-04-01')
+pp JpVaccination.next_day('hepatitis_B_2', '2020-04-01')
 
 => {:name=>"Ｂ型肝炎 ２回目", :date=>#<Date: 2020-04-28 ((2458968j,0s,0n),+0s,2299161j)>}
 ```
 
 If you want to find the date of the first vaccination, in short, the last character of the vaccination_key is 1, enter the date of birth in last_time.
+`JpVaccination.next_day(vaccination_1, birthday)`
 ```ruby
 birthday = '2022-02-01'
-pp JpVaccination.next_day(vaccination_key:'hepatitis_B_1', last_time: birthday)
+pp JpVaccination.next_day('hepatitis_B_1', birthday)
 
 => {:name=>"Ｂ型肝炎 １回目", :date=>#<Date: 2022-04-01 ((2458968j,0s,0n),+0s,2299161j)>}
 ```
