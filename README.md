@@ -22,8 +22,49 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-require 'JpVaccination'
+require 'jp_vaccination'
 ```
+### Check vaccination_keys.
+You can check the list of [vaccination_keys](#about-vaccination_key) that can be passed as arguments.
+
+`JpVaccination.vaccination_keys`
+
+```ruby
+pp JpVaccination.vaccination_keys
+
+=> [{ 'ヒブ １回目' => 'hib_1' },
+    { 'ヒブ ２回目' => 'hib_2' },
+    { 'ヒブ ３回目' => 'hib_3' },
+    { 'ヒブ ４回目' => 'hib_4' },
+    { 'Ｂ型肝炎 １回目' => 'hepatitis_B_1' },
+    { 'Ｂ型肝炎 ２回目' => 'hepatitis_B_2' },
+    { 'Ｂ型肝炎 ３回目' => 'hepatitis_B_3' },
+    { 'ロタウイルス １回目' => 'rotavirus_1' },
+    { 'ロタウイルス ２回目' => 'rotavirus_2' },
+    { 'ロタウイルス ３回目' => 'rotavirus_3' },
+    { '小児用肺炎球菌 １回目' => 'pneumococcus_1' },
+    { '小児用肺炎球菌 ２回目' => 'pneumococcus_2' },
+    { '小児用肺炎球菌 ３回目' => 'pneumococcus_3' },
+    { '小児用肺炎球菌 ４回目' => 'pneumococcus_4' },
+    { '４種混合 第１期 １回目' => 'DPT_IPV_1' },
+    { '４種混合 第１期 ２回目' => 'DPT_IPV_2' },
+    { '４種混合 第１期 ３回目' => 'DPT_IPV_3' },
+    { '４種混合 第１期 ４回目' => 'DPT_IPV_4' },
+    { '２種混合 第２期' => 'DT_1' },
+    { 'ＢＣＧ ' => 'BCG_1' },
+    { '麻しん・風しん混合 第１期' => 'MR_1' },
+    { '麻しん・風しん混合 第２期' => 'MR_2' },
+    { '水痘 １回目' => 'chickenpox_1' },
+    { '水痘 ２回目' => 'chickenpox_2' },
+    { 'おたふくかぜ １回目' => 'mumps_1' },
+    { 'おたふくかぜ ２回目' => 'mumps_2' },
+    { '日本脳炎 第１期 １回目' => 'Japanese_encephalitis_1' },
+    { '日本脳炎 第１期 ２回目' => 'Japanese_encephalitis_2' },
+    { '日本脳炎 第１期 ３回目' => 'Japanese_encephalitis_3' },
+    { '日本脳炎 第２期' => 'Japanese_encephalitis_4' }]
+
+```
+
 ### Access to vaccination data.
 Pass the argument as a string for the [vaccination_key](#about-vaccination_key).
 
@@ -32,16 +73,16 @@ Pass the argument as a string for the [vaccination_key](#about-vaccination_key).
 ```ruby
 chickenpox_1st = JpVaccination.find('chickenpox_1')
 
-chickenpox_1st.name         "水痘"
-chickenpox_1st.period       "１回目"
-chickenpox_1st.regular      true
-chickenpox_1st.type         "生ワクチン"
-chickenpox_1st.recommended  {:month=>12}
-chickenpox_1st.deadline     {:date_type=>"month", :start=>12, :end=>15, :less_than=>true}
-chickenpox_1st.interval     nil
+chickenpox_1st.name        # => "水痘"
+chickenpox_1st.period      # => "１回目"
+chickenpox_1st.regular     # => true
+chickenpox_1st.type        # => "生ワクチン"
+chickenpox_1st.recommended # => {:month=>12}
+chickenpox_1st.deadline    # => {:date_type=>"month", :start=>12, :end=>15, :less_than=>true}
+chickenpox_1st.interval    # => nil
 
 # name + period
-chickenpox_1st.formal_name  "水痘 １回目"
+chickenpox_1st.formal_name  # => "水痘 １回目"
 ```
 Example data.
 |column|data|example|title|
@@ -59,13 +100,13 @@ interval[^2]|Hash|{ <br>date_type: "month",<br> start: 3,<br> end: 12 <br>}|接�
 `less_than:false` is below.
 
 ### Calculate all recommended dates of vaccination
-`JpVaccination.recommended_schedules(birthday, convert_to_strings)`
+`JpVaccination.recommended_days(birthday, convert_to_strings)`
 
 default convert_to_string: nil
 
 ```rb
 birthday = '2022-03-01'
-pp JpVaccination.recommended_schedules(birthday, convert_to_strings = true)
+pp JpVaccination.recommended_days(birthday, convert_to_strings = true)
 # default convert_to_string: nil
 
 => [{:name=>"ヒブ １回目", :date=>"2022-05-01"},
@@ -100,13 +141,13 @@ pp JpVaccination.recommended_schedules(birthday, convert_to_strings = true)
     {:name=>"日本脳炎 第２期", :date=>"2031-03-01"}]
 ```
 ### Sort recommended vaccination dates in ascending order
-`JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = nil)`
+`JpVaccination.recommended_schedules(birthday, convert_to_strings = nil)`
 
 You can turn Date into String by setting `convert_to_strings` to true
 
 ```rb
 birthday = '2022-03-01'
-pp JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = true)
+pp JpVaccination.recommended_schedules(birthday, convert_to_strings = true)
 # default convert_to_string: nil
 
 => {"2022-05-01"=>["ヒブ １回目", "ロタウイルス １回目", "小児用肺炎球菌 １回目", "Ｂ型肝炎 １回目"],
@@ -125,10 +166,10 @@ pp JpVaccination.sort_recommended_schedules(birthday, convert_to_strings = true)
 ```
 
 
-`JpVaccination.sort_recommended_schedules(birthday, nil)` or
-`JpVaccination.sort_recommended_schedules(birthday)`
+`JpVaccination.recommended_schedules(birthday, nil)` or
+`JpVaccination.recommended_schedules(birthday)`
 ```ruby
-pp JpVaccination.sort_recommended_schedules('2022-03-01')
+pp JpVaccination.recommended_schedules('2022-03-01')
 => {#<Date: 2022-05-01 ((2459701j,0s,0n),+0s,2299161j)>=>["小児用肺炎球菌 １回目", "ヒブ １回目", "ロタウイルス １回目", "Ｂ型肝炎 １回目"],…
 ```
 
@@ -158,7 +199,8 @@ If the [vaccination_key](#about-vaccination_key) is incorrect, the following err
 
 puts JpVaccination.next_day(vaccination_key: 'hepatitis_B_4', last_time: '2020-04-01')
 
-jp_vaccination/lib/jp_vaccination.rb:99:in `output_argument_error': The vaccination_key doesn't exist. (ArgumentError)
+# error
+jp_vaccination/lib/jp_vaccination.rb:99:in `output_argument_error': The vaccination_key 'hepatitis_B_4' doesn't exist. (ArgumentError)
 ```
 
 ## About vaccination_key
