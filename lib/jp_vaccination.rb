@@ -40,11 +40,12 @@ module JpVaccination
     def recommended_schedules(birthday, convert_to_strings = nil)
       sort_by_date_vaccination_days =
         recommended_days(birthday, convert_to_strings).sort_by do |day|
-          day[:date].instance_of?(Date) || day[:date].instance_of?(String) ? day[:date] : day[:date].first
+          [Date, String].include?(day[:date].class) ? day[:date] : day[:date].first
         end
-      summarise_name_and_date = sort_by_date_vaccination_days.map { |key, _value| { key[:name] => key[:date] } }
-      flatten_hash = {}.merge(*summarise_name_and_date)
-      flatten_hash.each_key.group_by { |date| flatten_hash[date] }.each_pair { |_date, name_ary| name_ary.sort! }
+      combined_name_and_date = sort_by_date_vaccination_days.each_with_object({}) do |day, ret|
+        ret[day[:name]] = day[:date]
+      end
+      combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value(&:sort!)
     end
 
     def next_day(vaccination_key, last_time)
