@@ -1,0 +1,485 @@
+{
+  "vaccinations": {
+    "hib_1": {
+      "name": "ヒブ",
+      "period": "１回目",
+      "regular": true,
+      "recommended": {
+        "month": 2
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 2,
+        "end": 7,
+        "less_than": true
+      }
+    },
+    "hib_2": {
+      "name": "ヒブ",
+      "period": "２回目",
+      "regular": true,
+      "recommended": {
+        "month": 3
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": null,
+        "end": 12,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 27,
+        "end": 56
+      }
+    },
+    "hib_3": {
+      "name": "ヒブ",
+      "period": "３回目",
+      "regular": true,
+      "recommended": {
+        "month": 4
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": null,
+        "end": 12,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 27,
+        "end": 56
+      }
+    },
+    "hib_4": {
+      "name": "ヒブ",
+      "period": "４回目",
+      "regular": true,
+      "recommended": {
+        "month": 12
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": null,
+        "end": 60,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "month",
+        "start": 7,
+        "end": 13,
+        "less_than": true
+      }
+    },
+    "hepatitis_B_1": {
+      "name": "Ｂ型肝炎",
+      "period": "１回目",
+      "regular": true,
+      "recommended": {
+        "month": 2
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 2,
+        "end": null,
+        "less_than": true
+      }
+    },
+    "hepatitis_B_2": {
+      "name": "Ｂ型肝炎",
+      "period": "２回目",
+      "regular": true,
+      "recommended": {
+        "month": 3
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 27,
+        "end": null
+      },
+      "description": "①生後2か月②生後3か月③生後7-8か月 ①-②は27日（4週）以上、①-③は139日（20週）以上あける"
+    },
+    "hepatitis_B_3": {
+      "name": "Ｂ型肝炎",
+      "period": "３回目",
+      "regular": true,
+      "recommended": {
+        "month": 7
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": null,
+        "end": 1,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "week",
+        "start": 16,
+        "end": 20,
+        "less_than": true
+      }
+    },
+    "rotavirus_1": {
+      "name": "ロタウイルス",
+      "period": "１回目",
+      "regular": true,
+      "recommended": {
+        "month": 2
+      },
+      "deadline": {
+        "date_type": "day",
+        "start": null,
+        "end": 104,
+        "less_than": true
+      }
+    },
+    "rotavirus_2": {
+      "name": "ロタウイルス",
+      "period": "２回目",
+      "regular": true,
+      "recommended": {
+        "month": 3
+      },
+      "deadline": {
+        "date_type": "day",
+        "start": null,
+        "end": 168,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "week",
+        "start": 4,
+        "end": null,
+        "less_than": true
+      }
+    },
+    "rotavirus_3": {
+      "name": "ロタウイルス",
+      "period": "３回目",
+      "regular": true,
+      "recommended": {
+        "month": 4
+      },
+      "deadline": {
+        "date_type": "day",
+        "start": null,
+        "end": 224
+      },
+      "interval": {
+        "date_type": "week",
+        "start": 4,
+        "end": null,
+        "less_than": true
+      }
+    },
+    "pneumococcus_1": {
+      "name": "小児用肺炎球菌",
+      "period": "１回目",
+      "regular": true,
+      "recommended": {
+        "month": 2
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 2,
+        "end": 7,
+        "less_than": true
+      }
+    },
+    "pneumococcus_2": {
+      "name": "小児用肺炎球菌",
+      "period": "２回目",
+      "regular": true,
+      "recommended": {
+        "month": 3
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": null,
+        "end": 12,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 27,
+        "end": 56,
+        "less_than": true
+      }
+    },
+    "pneumococcus_3": {
+      "name": "小児用肺炎球菌",
+      "period": "３回目",
+      "regular": true,
+      "recommended": {
+        "month": 4
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": null,
+        "end": 12,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 27,
+        "end": 56,
+        "less_than": true
+      }
+    },
+    "pneumococcus_4": {
+      "name": "小児用肺炎球菌",
+      "period": "４回目",
+      "regular": true,
+      "recommended": {
+        "month": 12
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 12,
+        "end": 15,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 60,
+        "end": null,
+        "less_than": true
+      }
+    },
+    "DPT_IPV_1": {
+      "name": "４種混合",
+      "period": "第１期 １回目",
+      "regular": true,
+      "recommended": {
+        "month": 3
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 3,
+        "end": 12,
+        "less_than": true
+      }
+    },
+    "DPT_IPV_2": {
+      "name": "４種混合",
+      "period": "第１期 ２回目",
+      "regular": true,
+      "recommended": {
+        "month": 4
+      },
+      "deadline": null,
+      "interval": {
+        "date_type": "day",
+        "start": 20,
+        "end": 56
+      }
+    },
+    "DPT_IPV_3": {
+      "name": "４種混合",
+      "period": "第１期 ３回目",
+      "regular": true,
+      "recommended": {
+        "month": 5
+      },
+      "deadline": null,
+      "interval": {
+        "date_type": "day",
+        "start": 20,
+        "end": 56
+      }
+    },
+    "DPT_IPV_4": {
+      "name": "４種混合",
+      "period": "第１期 ４回目",
+      "regular": true,
+      "recommended": {
+        "month": 12
+      },
+      "deadline": null,
+      "interval": {
+        "date_type": "month",
+        "start": 12,
+        "end": 18
+      }
+    },
+    "DT_1": {
+      "name": "２種混合",
+      "period": "第２期",
+      "regular": true,
+      "recommended": {
+        "year": 11
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 11,
+        "end": 13,
+        "less_than": true
+      }
+    },
+    "BCG_1": {
+      "name": "ＢＣＧ",
+      "period": "",
+      "regular": true,
+      "type": "生ワクチン",
+      "recommended": {
+        "month": 5
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 5,
+        "end": 8,
+        "less_than": true
+      }
+    },
+    "MR_1": {
+      "name": "麻しん・風しん混合",
+      "period": "第１期",
+      "regular": true,
+      "type": "生ワクチン",
+      "recommended": {
+        "month": 12
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 1,
+        "end": 2,
+        "less_than": true
+      },
+      "description": "①1歳以上2歳未満 ②5歳以上7歳未満（小学校入学前の1年間）"
+    },
+    "MR_2": {
+      "name": "麻しん・風しん混合",
+      "period": "第２期",
+      "type": "生ワクチン",
+      "regular": true,
+      "recommended": "小学校入学前１年間",
+      "deadline": {
+        "date_type": "小学校入学前１年間"
+      }
+    },
+    "chickenpox_1": {
+      "name": "水痘",
+      "period": "１回目",
+      "regular": true,
+      "type": "生ワクチン",
+      "recommended": {
+        "month": 12
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 12,
+        "end": 15,
+        "less_than": true
+      }
+    },
+    "chickenpox_2": {
+      "name": "水痘",
+      "period": "２回目",
+      "regular": true,
+      "type": "生ワクチン",
+      "recommended": {
+        "month": 18
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 15,
+        "end": 36,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "month",
+        "start": 3,
+        "end": 12
+      }
+    },
+    "mumps_1": {
+      "name": "おたふくかぜ",
+      "period": "１回目",
+      "regular": false,
+      "type": "生ワクチン",
+      "recommended": {
+        "month": 12
+      },
+      "deadline": {
+        "date_type": "month",
+        "start": 12,
+        "end": 16
+      }
+    },
+    "mumps_2": {
+      "name": "おたふくかぜ",
+      "period": "２回目",
+      "regular": false,
+      "type": "生ワクチン",
+      "recommended": "小学校入学前１年間",
+      "deadline": null
+    },
+    "Japanese_encephalitis_1": {
+      "name": "日本脳炎",
+      "period": "第１期 １回目",
+      "regular": true,
+      "recommended": {
+        "year": 3
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 3,
+        "end": 4,
+        "less_than": true
+      }
+    },
+    "Japanese_encephalitis_2": {
+      "name": "日本脳炎",
+      "period": "第１期 ２回目",
+      "regular": true,
+      "recommended": {
+        "month": 37
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 3,
+        "end": 4,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "day",
+        "start": 6,
+        "end": 28
+      }
+    },
+    "Japanese_encephalitis_3": {
+      "name": "日本脳炎",
+      "period": "第１期 ３回目",
+      "regular": true,
+      "recommended": {
+        "year": 4
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 4,
+        "end": 5,
+        "less_than": true
+      },
+      "interval": {
+        "date_type": "month",
+        "start": 6,
+        "end": 12
+      }
+    },
+    "Japanese_encephalitis_4": {
+      "name": "日本脳炎",
+      "period": "第２期",
+      "regular": true,
+      "recommended": {
+        "year": 9
+      },
+      "deadline": {
+        "date_type": "year",
+        "start": 9,
+        "end": 13,
+        "less_than": true
+      }
+    }
+  }
+}
