@@ -54,6 +54,14 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
     assert_equal Date.parse('2020-03-01'), next_day[:date]
   end
 
+  def test_next_day_when_interval_nil_and_deadline_nil
+    vaccination_key = 'mumps_2'
+    birthday = '2020-01-01'
+    next_day = JpVaccination.next_day(vaccination_key, birthday)
+    assert_equal 'おたふくかぜ ２回目', next_day[:name]
+    assert_equal '小学校入学前１年間', next_day[:date]
+  end
+
   def test_next_day_when_interval
     vaccination_key = 'hepatitis_B_2'
     last_time = '2020-01-01'
