@@ -57,7 +57,11 @@ module JpVaccination
 
         date = case vaccination[:interval]
                when nil
-                 calc_date(period: vaccination[:deadline], start_or_end: :start, date: last_time)
+                 if vaccination[:deadline]
+                   calc_date(period: vaccination[:deadline], start_or_end: :start, date: last_time)
+                 else
+                   vaccination[:recommended]
+                 end
                else
                  calc_date(period: vaccination[:interval], start_or_end: :start, date: last_time)
                end
