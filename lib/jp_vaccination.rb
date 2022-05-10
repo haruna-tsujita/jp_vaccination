@@ -5,7 +5,7 @@ require 'json'
 require_relative './jp_vaccination/vaccination'
 require_relative './jp_vaccination/version'
 
-module JpVaccination
+module JpVaccination # rubocop:disable Metrics/ModuleLength
   class << self
     def vaccination_keys
       vaccinations_json.map do |key, _value|
@@ -48,7 +48,7 @@ module JpVaccination
       combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value(&:sort!)
     end
 
-    def next_day(vaccination_key, last_time)
+    def next_day(vaccination_key, last_time, birthday = nil)
       next_day = {}
       vaccinations_json.each do |key, vaccination|
         next unless key == vaccination_key.to_sym
@@ -57,13 +57,13 @@ module JpVaccination
 
         date = case vaccination[:interval]
                when nil
-                 if vaccination[:deadline]
-                   calc_date(period: vaccination[:deadline], start_or_end: :start, date: last_time)
-                 else
-                   vaccination[:recommended]
-                 end
+                 nil_interval(vaccination, last_time)
                else
-                 calc_date(period: vaccination[:interval], start_or_end: :start, date: last_time)
+                 if vaccination[:birthday]
+                   pneumococcus_fourth(vaccination, last_time, birthday)
+                 else
+                   calc_date(period: vaccination[:interval], start_or_end: :start, date: last_time)
+                 end
                end
         next_day[:name] = name
         next_day[:date] = date
@@ -93,6 +93,20 @@ module JpVaccination
       return date if start_or_end != :end
 
       period[:less_than] ? date - 1 : date
+    end
+
+    def nil_interval(vaccination, last_time)
+      if vaccination[:deadline]
+        calc_date(period: vaccination[:deadline], start_or_end: :start, date: last_time)
+      else
+        vaccination[:recommended]
+      end
+    end
+
+    def pneumococcus_fourth(vaccination, last_time, birthday)
+      interval_date = calc_date(period: vaccination[:interval], start_or_end: :start, date: last_time)
+      birthday_date = Date.parse(birthday) >> vaccination[:birthday][:start]
+      interval_date < birthday_date ? birthday_date : interval_date
     end
 
     def pre_school_year(birthday, convert_to_strings = nil)

@@ -245,6 +245,12 @@
         "start": 60,
         "end": null,
         "less_than": true
+      },
+      "birthday": {
+        "date_type": "month",
+        "start": 12,
+        "end": 15,
+        "less_than": true
       }
     },
     "DPT_IPV_1": {

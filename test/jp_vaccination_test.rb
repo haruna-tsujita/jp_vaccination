@@ -70,6 +70,15 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
     assert_equal Date.parse('2020-01-28'), next_day[:date]
   end
 
+  def test_next_day_pneumococcus_fourth
+    vaccination_key = 'pneumococcus_4'
+    last_day = '2020-05-01'
+    birthday = '2020-01-01'
+    next_day = JpVaccination.next_day(vaccination_key, last_day, birthday)
+    assert_equal '小児用肺炎球菌 ４回目', next_day[:name]
+    assert_equal Date.parse('2021-01-01'), next_day[:date]
+  end
+
   def test_next_day_method_when_argument_is_not_exist_key
     not_exist_key = 'hib_5'
     e = assert_raises ArgumentError do
