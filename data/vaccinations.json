@@ -300,7 +300,7 @@
       "period": "第１期 ４回目",
       "regular": true,
       "recommended": {
-        "month": 12
+        "month": 17
       },
       "deadline": null,
       "interval": {
@@ -459,7 +459,7 @@
       "period": "第１期 ３回目",
       "regular": true,
       "recommended": {
-        "year": 4
+        "month": 49
       },
       "deadline": {
         "date_type": "year",
