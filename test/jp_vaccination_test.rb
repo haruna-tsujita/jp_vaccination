@@ -106,7 +106,7 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
                         { name: '４種混合 第１期 １回目', date: Date.parse('2021-07-01') },
                         { name: '４種混合 第１期 ２回目', date: Date.parse('2021-08-01') },
                         { name: '４種混合 第１期 ３回目', date: Date.parse('2021-09-01') },
-                        { name: '４種混合 第１期 ４回目', date: Date.parse('2022-04-01') },
+                        { name: '４種混合 第１期 ４回目', date: Date.parse('2022-09-01') },
                         { name: '２種混合 第２期', date: Date.parse('2032-04-01') },
                         { name: 'ＢＣＧ ', date: Date.parse('2021-09-01') },
                         { name: '麻しん・風しん混合 第１期', date: Date.parse('2022-04-01') },
@@ -117,7 +117,7 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
                         { name: 'おたふくかぜ ２回目', date: Date.parse('2026-04-01')..Date.parse('2027-03-31') },
                         { name: '日本脳炎 第１期 １回目', date: Date.parse('2024-04-01') },
                         { name: '日本脳炎 第１期 ２回目', date: Date.parse('2024-05-01') },
-                        { name: '日本脳炎 第１期 ３回目', date: Date.parse('2025-04-01') },
+                        { name: '日本脳炎 第１期 ３回目', date: Date.parse('2025-05-01') },
                         { name: '日本脳炎 第２期', date: Date.parse('2030-04-01') }]
     assert_equal expect_schedules, JpVaccination.recommended_days(birthday)
   end
@@ -130,11 +130,12 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
                        '2022-09-14' => ['４種混合 第１期 ３回目', 'ＢＣＧ '],
                        '2022-11-14' => ['Ｂ型肝炎 ３回目'],
                        '2023-04-14' => ['おたふくかぜ １回目', 'ヒブ ４回目', '小児用肺炎球菌 ４回目', '水痘 １回目', '麻しん・風しん混合 第１期',
-                                        '４種混合 第１期 ４回目'],
+                                        ],
+                       '2023-09-14' => ['４種混合 第１期 ４回目'],
                        '2023-10-14' => ['水痘 ２回目'],
                        '2025-04-14' => ['日本脳炎 第１期 １回目'],
                        '2025-05-14' => ['日本脳炎 第１期 ２回目'],
-                       '2026-04-14' => ['日本脳炎 第１期 ３回目'],
+                       '2026-05-14' => ['日本脳炎 第１期 ３回目'],
                        '2028-04-01〜2029-03-31' => ['おたふくかぜ ２回目', '麻しん・風しん混合 第２期'],
                        '2031-04-14' => ['日本脳炎 第２期'],
                        '2033-04-14' => ['２種混合 第２期'] }
@@ -151,11 +152,12 @@ class JpVaccinationTest < Minitest::Test # rubocop:disable Metrics/classLength
                        Date.parse('2020-07-29') => ['４種混合 第１期 ３回目', 'ＢＣＧ '],
                        Date.parse('2020-09-29') => ['Ｂ型肝炎 ３回目'],
                        Date.parse('2021-02-28') => ['おたふくかぜ １回目', 'ヒブ ４回目', '小児用肺炎球菌 ４回目', '水痘 １回目', '麻しん・風しん混合 第１期',
-                                                    '４種混合 第１期 ４回目'],
+                                                    ],
+                       Date.parse('2021-07-29') => ['４種混合 第１期 ４回目'],
                        Date.parse('2021-08-29') => ['水痘 ２回目'],
                        Date.parse('2023-02-28') => ['日本脳炎 第１期 １回目'],
                        Date.parse('2023-03-29') => ['日本脳炎 第１期 ２回目'],
-                       Date.parse('2024-02-29') => ['日本脳炎 第１期 ３回目'],
+                       Date.parse('2024-03-29') => ['日本脳炎 第１期 ３回目'],
                        Date.parse('2025-04-01')..Date.parse('2026-03-31') => ['おたふくかぜ ２回目', '麻しん・風しん混合 第２期'],
                        Date.parse('2029-02-28') => ['日本脳炎 第２期'],
                        Date.parse('2031-02-28') => ['２種混合 第２期'] }
