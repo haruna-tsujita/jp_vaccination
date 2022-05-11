@@ -1,11 +1,7 @@
 PATH
   remote: .
   specs:
-<<<<<<< HEAD
-    jp_vaccination (1.2.0)
-=======
     jp_vaccination (1.3.0)
->>>>>>> b7f64bd (Gemfile.lockのバージョンを修正)
 
 GEM
   remote: https://rubygems.org/
