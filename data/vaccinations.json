@@ -360,9 +360,7 @@
       "type": "生ワクチン",
       "regular": true,
       "recommended": "小学校入学前１年間",
-      "deadline": {
-        "date_type": "小学校入学前１年間"
-      }
+      "deadline": null
     },
     "chickenpox_1": {
       "name": "水痘",
